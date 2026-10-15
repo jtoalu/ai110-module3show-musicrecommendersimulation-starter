@@ -1,3 +1,4 @@
+import csv
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 
@@ -45,14 +46,37 @@ class Recommender:
         # TODO: Implement explanation logic
         return "Explanation placeholder"
 
-def load_songs(csv_path: str) -> List[Dict]:
+def load_songs(csv_path: str = "data/songs.csv") -> List[Dict]:
     """
-    Loads songs from a CSV file.
+    Load songs from a CSV file, converting numeric fields to numbers.
     Required by src/main.py
     """
     # TODO: Implement CSV loading logic
+    numeric_fields = {
+        "id": int,
+        "energy": float,
+        "tempo_bpm": float,
+        "valence": float,
+        "danceability": float,
+        "acousticness": float,
+    }    
     print(f"Loading songs from {csv_path}...")
-    return []
+    with open(csv_path, newline="", encoding="utf-8") as csvfile:
+        songs = []
+        for row in csv.DictReader(csvfile):
+            for field, converter in numeric_fields.items():
+                row[field] = converter(row[field])
+
+            print(
+                f"Loaded: {row['title']} by {row['artist']} "
+                f"({row['genre']}, {row['mood']}, "
+                f"energy {row['energy']:.2f}, "
+                f"tempo {row['tempo_bpm']:.0f} BPM)"
+            )
+
+            songs.append(row)
+    print(f"Loaded {len(songs)} songs.")
+    return songs
 
 def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     """
@@ -62,33 +86,41 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     # TODO: Implement scoring logic using your Algorithm Recipe from Phase 2.
     # Expected return format: (score, reasons)
 
+    """Score a song and return the score with user-readable reasons."""
     preferred_genres = user_prefs.get("preferred_genres", {})
     preferred_moods = user_prefs.get("preferred_moods", {})
 
     if preferred_genres:
         genre_points = 2.0 * preferred_genres.get(song["genre"], 0.0)
     else:
-        genre_points = 2.0 if song["genre"] == user_prefs.get("favorite_genre") else 0.0
+        genre_points = (
+            2.0 if song["genre"] == user_prefs.get("favorite_genre") else 0.0
+        )
 
     if preferred_moods:
         mood_points = preferred_moods.get(song["mood"], 0.0)
     else:
-        mood_points = 1.0 if song["mood"] == user_prefs.get("favorite_mood") else 0.0
+        mood_points = (
+            1.0 if song["mood"] == user_prefs.get("favorite_mood") else 0.0
+        )
 
     target_energy = user_prefs.get(
         "energy_preference",
         user_prefs.get("target_energy", 0.5),
     )
-    energy_points = 1.0 - abs(song["energy"] - target_energy)
+    energy_points = max(0.0, 1.0 - abs(song["energy"] - target_energy))
 
     score = genre_points + mood_points + energy_points
-    reasons = []
-
-    if genre_points > 0:
-        reasons.append(f"Genre match: +{genre_points:.1f}")
-    if mood_points > 0:
-        reasons.append(f"Mood match: +{mood_points:.1f}")
-    reasons.append(f"Energy similarity: +{energy_points:.2f}")
+    reasons = [
+        f"genre match (+{genre_points:.1f})"
+        if genre_points > 0
+        else "genre not preferred (+0.0)",
+        f"mood match (+{mood_points:.1f})"
+        if mood_points > 0
+        else "mood not preferred (+0.0)",
+        f"energy similarity (+{energy_points:.2f}); "
+        f"song {song['energy']:.2f}, target ({target_energy:.2f})",
+    ]
 
     return score, reasons
 
@@ -99,4 +131,15 @@ def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tup
     """
     # TODO: Implement scoring and ranking logic
     # Expected return format: (song_dict, score, explanation)
-    return []
+    """Return the top k songs ranked by score, with explanations."""
+    scored_songs = [
+        (song, score, "; ".join(reasons))
+        for song in songs
+        for score, reasons in [score_song(user_prefs, song)]
+    ]
+
+    return sorted(
+        scored_songs,
+        key=lambda recommendation: recommendation[1],
+        reverse=True,
+    )[:k]
