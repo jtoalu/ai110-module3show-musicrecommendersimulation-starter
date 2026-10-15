@@ -160,6 +160,82 @@ Paste a sample of your recommender's output here as a text block so a reader can
 #   3. ...
 ```
 
+```
+python3 src/main.py
+Loading songs from data/songs.csv...
+Loaded: Sunrise City by Neon Echo (pop, happy, energy 0.82, tempo 118 BPM)
+Loaded: Midnight Coding by LoRoom (lofi, chill, energy 0.42, tempo 78 BPM)
+Loaded: Storm Runner by Voltline (rock, intense, energy 0.91, tempo 152 BPM)
+Loaded: Library Rain by Paper Lanterns (lofi, chill, energy 0.35, tempo 72 BPM)
+Loaded: Gym Hero by Max Pulse (pop, intense, energy 0.93, tempo 132 BPM)
+Loaded: Spacewalk Thoughts by Orbit Bloom (ambient, chill, energy 0.28, tempo 60 BPM)
+Loaded: Coffee Shop Stories by Slow Stereo (jazz, relaxed, energy 0.37, tempo 90 BPM)
+Loaded: Night Drive Loop by Neon Echo (synthwave, moody, energy 0.75, tempo 110 BPM)
+Loaded: Focus Flow by LoRoom (lofi, focused, energy 0.40, tempo 80 BPM)
+Loaded: Rooftop Lights by Indigo Parade (indie pop, happy, energy 0.76, tempo 124 BPM)
+Loaded: Maple County Lines by June Hollow (country, wistful, energy 0.52, tempo 96 BPM)
+Loaded: Island Sidewalk by Golden Kites (reggae, playful, energy 0.68, tempo 102 BPM)
+Loaded: The Brass Citadel by Northglass Ensemble (classical, triumphant, energy 0.73, tempo 128 BPM)
+Loaded: Quiet Orchard by Fern & Flint (folk, serene, energy 0.31, tempo 74 BPM)
+Loaded: Steel Horizon by Gravel Choir (metal, defiant, energy 0.96, tempo 168 BPM)
+Loaded: Velvet Signals by Marigold Circuit (funk, romantic, energy 0.79, tempo 114 BPM)
+Loaded: Blue Room Lantern by The Copper Notes (blues, mysterious, energy 0.46, tempo 88 BPM)
+Loaded: Paper Planes at Dawn by Harbor Arcade (drum and bass, hopeful, energy 0.88, tempo 174 BPM)
+Loaded 18 songs.
+
+USER PREFERENCES
+============================================================
+Favorite Genre       pop
+Favorite Mood        happy
+Target Energy        0.8
+============================================================
+
+TOP RECOMMENDATIONS
+============================================================
+
+1. Sunrise City - Neon Echo
+   Score: 3.98
+   Why this was recommended:
+   - genre match (+2.0)
+   - mood match (+1.0)
+   - energy similarity (+0.98)
+   - song 0.82, target (0.80)
+
+2. Gym Hero - Max Pulse
+   Score: 2.87
+   Why this was recommended:
+   - genre match (+2.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.87)
+   - song 0.93, target (0.80)
+
+3. Rooftop Lights - Indigo Parade
+   Score: 1.96
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood match (+1.0)
+   - energy similarity (+0.96)
+   - song 0.76, target (0.80)
+
+4. Velvet Signals - Marigold Circuit
+   Score: 0.99
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.99)
+   - song 0.79, target (0.80)
+
+5. Night Drive Loop - Neon Echo
+   Score: 0.95
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.95)
+   - song 0.75, target (0.80)
+
+============================================================
+```
+
 ```python
 taste_profile_1 = {
     "favorite_genre": "lofi",
