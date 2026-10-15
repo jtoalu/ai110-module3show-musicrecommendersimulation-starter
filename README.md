@@ -160,6 +160,78 @@ Paste a sample of your recommender's output here as a text block so a reader can
 #   3. ...
 ```
 
+```python
+taste_profile_1 = {
+    "favorite_genre": "lofi",
+    "favorite_mood": "chill",
+    "target_energy": 0.40,
+    "target_tempo_bpm": 80,
+    "target_valence": 0.60,
+    "target_danceability": 0.60,
+    "target_acousticness": 0.80,
+}
+```
+
+```python
+taste_profile_2 = {
+    "preferred_genres": {
+        "lofi": 1.0,
+        "ambient": 0.8,
+        "jazz": 0.6,
+        "rock": 0.2,
+    },
+    "preferred_moods": {
+        "chill": 1.0,
+        "focused": 0.8,
+        "relaxed": 0.7,
+        "intense": 0.1,
+    },
+    "energy_preference": 0.40,
+    "tempo_preference_bpm": 80,
+    "valence_preference": 0.60,
+    "danceability_preference": 0.60,
+    "acousticness_preference": 0.80,
+}
+```
+
+## Scoring Logic Design
+
+A balanced starting point is to give Genre and Mood equal weight, then divide the remaining points across the five numeric features:
+| Feature |	Weight |
+| Genre match |	20 points |
+| Mood match |	20 points |
+| Energy closeness |	12 points |
+| Tempo closeness |	12 points |
+| Valence closeness |	12 points |
+| Danceability closeness |	12 points |
+| Acousticness closeness |	12 points |
+| Total |	100 points |
+
+Use the profile’s preference values (0–1) for genre and mood matches. For numeric features, calculate closeness as 1 - normalized_difference, where 1 means an exact match and 0 means the values are far apart. For 0–1 features, the normalized difference is simply the absolute difference; for tempo, divide by a chosen BPM range, such as 180, and cap the result at 1.
+
+For example, a chill lofi song would score strongly for a profile favoring lofi and chill with low energy and tempo. Intense rock would score lower on genre and mood—and likely on those numeric preferences too. These weights are a reasonable baseline; adjust them after checking whether recommendations reflect the intended taste.
+
+## Quick Map of Data Flow
+
+Input
+  User Prefs + K
+       │
+       ▼
+Process
+  Load songs from CSV
+       │
+       ▼
+  For each song:
+    score, reasons = score_song(user_prefs, song)
+    collect (song, score, reasons)
+       │
+       ▼
+Output
+  Sort collected songs by score, highest first
+  Return the top K recommendations
+
+In short: preferences and CSV → score every song → rank by score → return top K.
+
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
 
 ---
@@ -198,4 +270,3 @@ Write 1 to 2 paragraphs here about what you learned:
 
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
-
