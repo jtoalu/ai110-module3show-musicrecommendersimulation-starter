@@ -197,7 +197,9 @@ taste_profile_2 = {
 ## Scoring Logic Design
 
 A balanced starting point is to give Genre and Mood equal weight, then divide the remaining points across the five numeric features:
+
 | Feature |	Weight |
+| ------- | ------ |
 | Genre match |	20 points |
 | Mood match |	20 points |
 | Energy closeness |	12 points |
@@ -213,22 +215,16 @@ For example, a chill lofi song would score strongly for a profile favoring lofi 
 
 ## Quick Map of Data Flow
 
-Input
-  User Prefs + K
-       │
-       ▼
-Process
-  Load songs from CSV
-       │
-       ▼
-  For each song:
-    score, reasons = score_song(user_prefs, song)
-    collect (song, score, reasons)
-       │
-       ▼
-Output
-  Sort collected songs by score, highest first
-  Return the top K recommendations
+```mermaid
+flowchart TD
+    A[Input: User Preferences and K] --> B[Load songs from CSV]
+    B --> C{For each song}
+    C --> D[Score song and collect reasons]
+    D --> E[Collect song, score, and reasons]
+    E --> C
+    C -->|All songs scored| F[Sort by score, highest first]
+    F --> G[Output: Top K recommendations]
+```
 
 In short: preferences and CSV → score every song → rank by score → return top K.
 
