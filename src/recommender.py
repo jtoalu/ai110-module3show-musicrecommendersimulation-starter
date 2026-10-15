@@ -61,7 +61,36 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     """
     # TODO: Implement scoring logic using your Algorithm Recipe from Phase 2.
     # Expected return format: (score, reasons)
-    return []
+
+    preferred_genres = user_prefs.get("preferred_genres", {})
+    preferred_moods = user_prefs.get("preferred_moods", {})
+
+    if preferred_genres:
+        genre_points = 2.0 * preferred_genres.get(song["genre"], 0.0)
+    else:
+        genre_points = 2.0 if song["genre"] == user_prefs.get("favorite_genre") else 0.0
+
+    if preferred_moods:
+        mood_points = preferred_moods.get(song["mood"], 0.0)
+    else:
+        mood_points = 1.0 if song["mood"] == user_prefs.get("favorite_mood") else 0.0
+
+    target_energy = user_prefs.get(
+        "energy_preference",
+        user_prefs.get("target_energy", 0.5),
+    )
+    energy_points = 1.0 - abs(song["energy"] - target_energy)
+
+    score = genre_points + mood_points + energy_points
+    reasons = []
+
+    if genre_points > 0:
+        reasons.append(f"Genre match: +{genre_points:.1f}")
+    if mood_points > 0:
+        reasons.append(f"Mood match: +{mood_points:.1f}")
+    reasons.append(f"Energy similarity: +{energy_points:.2f}")
+
+    return score, reasons
 
 def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
     """
