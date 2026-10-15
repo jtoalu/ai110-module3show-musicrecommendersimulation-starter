@@ -32,6 +32,8 @@ Prompts:
 
 Avoid code here. Pretend you are explaining the idea to a friend who does not program.
 
+The recommender works by comparing each song to the user’s taste profile using simple musical features like genre, mood, energy, and tempo. It gives each song a score based on how closely it matches the traits the user seems to prefer, and it lowers the score when a song is very different from those preferences. In other words, songs that feel similar to the user’s favorite styles are ranked higher, while songs that do not fit those patterns are pushed lower. After scoring all songs, the model sorts them from best match to worst and recommends the top results. This is similar to how a friend might make a playlist: they look at what you usually like, notice the patterns in your tastes, and then choose songs that fit those patterns best while still keeping the list interesting and varied.
+
 ---
 
 ## 4. Data  
