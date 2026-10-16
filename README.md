@@ -236,7 +236,311 @@ TOP RECOMMENDATIONS
 ============================================================
 ```
 
+### adversarial_conflicting_prefs
+
+```
+python3 src/main.py
+Loading songs from data/songs.csv...
+Loaded: Sunrise City by Neon Echo (pop, happy, energy 0.82, tempo 118 BPM)
+Loaded: Midnight Coding by LoRoom (lofi, chill, energy 0.42, tempo 78 BPM)
+Loaded: Storm Runner by Voltline (rock, intense, energy 0.91, tempo 152 BPM)
+Loaded: Library Rain by Paper Lanterns (lofi, chill, energy 0.35, tempo 72 BPM)
+Loaded: Gym Hero by Max Pulse (pop, intense, energy 0.93, tempo 132 BPM)
+Loaded: Spacewalk Thoughts by Orbit Bloom (ambient, chill, energy 0.28, tempo 60 BPM)
+Loaded: Coffee Shop Stories by Slow Stereo (jazz, relaxed, energy 0.37, tempo 90 BPM)
+Loaded: Night Drive Loop by Neon Echo (synthwave, moody, energy 0.75, tempo 110 BPM)
+Loaded: Focus Flow by LoRoom (lofi, focused, energy 0.40, tempo 80 BPM)
+Loaded: Rooftop Lights by Indigo Parade (indie pop, happy, energy 0.76, tempo 124 BPM)
+Loaded: Maple County Lines by June Hollow (country, wistful, energy 0.52, tempo 96 BPM)
+Loaded: Island Sidewalk by Golden Kites (reggae, playful, energy 0.68, tempo 102 BPM)
+Loaded: The Brass Citadel by Northglass Ensemble (classical, triumphant, energy 0.73, tempo 128 BPM)
+Loaded: Quiet Orchard by Fern & Flint (folk, serene, energy 0.31, tempo 74 BPM)
+Loaded: Steel Horizon by Gravel Choir (metal, defiant, energy 0.96, tempo 168 BPM)
+Loaded: Velvet Signals by Marigold Circuit (funk, romantic, energy 0.79, tempo 114 BPM)
+Loaded: Blue Room Lantern by The Copper Notes (blues, mysterious, energy 0.46, tempo 88 BPM)
+Loaded: Paper Planes at Dawn by Harbor Arcade (drum and bass, hopeful, energy 0.88, tempo 174 BPM)
+Loaded 18 songs.
+
+USER PREFERENCES (adversarial_conflicting_prefs)
+============================================================
+Favorite Genre       lofi
+Favorite Mood        intense
+Target Energy        0.95
+============================================================
+
+TOP RECOMMENDATIONS
+============================================================
+
+1. Midnight Coding - LoRoom
+   Score: 2.47
+   Why this was recommended:
+   - genre match (+2.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.47)
+   - song 0.42, target (0.95)
+
+2. Focus Flow - LoRoom
+   Score: 2.45
+   Why this was recommended:
+   - genre match (+2.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.45)
+   - song 0.40, target (0.95)
+
+3. Library Rain - Paper Lanterns
+   Score: 2.40
+   Why this was recommended:
+   - genre match (+2.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.40)
+   - song 0.35, target (0.95)
+
+4. Gym Hero - Max Pulse
+   Score: 1.98
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood match (+1.0)
+   - energy similarity (+0.98)
+   - song 0.93, target (0.95)
+
+5. Storm Runner - Voltline
+   Score: 1.96
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood match (+1.0)
+   - energy similarity (+0.96)
+   - song 0.91, target (0.95)
+
+============================================================
+```
+
+### edge_case_low_energy_prefs
+```
+python3 src/main.py
+Loading songs from data/songs.csv...
+Loaded: Sunrise City by Neon Echo (pop, happy, energy 0.82, tempo 118 BPM)
+Loaded: Midnight Coding by LoRoom (lofi, chill, energy 0.42, tempo 78 BPM)
+Loaded: Storm Runner by Voltline (rock, intense, energy 0.91, tempo 152 BPM)
+Loaded: Library Rain by Paper Lanterns (lofi, chill, energy 0.35, tempo 72 BPM)
+Loaded: Gym Hero by Max Pulse (pop, intense, energy 0.93, tempo 132 BPM)
+Loaded: Spacewalk Thoughts by Orbit Bloom (ambient, chill, energy 0.28, tempo 60 BPM)
+Loaded: Coffee Shop Stories by Slow Stereo (jazz, relaxed, energy 0.37, tempo 90 BPM)
+Loaded: Night Drive Loop by Neon Echo (synthwave, moody, energy 0.75, tempo 110 BPM)
+Loaded: Focus Flow by LoRoom (lofi, focused, energy 0.40, tempo 80 BPM)
+Loaded: Rooftop Lights by Indigo Parade (indie pop, happy, energy 0.76, tempo 124 BPM)
+Loaded: Maple County Lines by June Hollow (country, wistful, energy 0.52, tempo 96 BPM)
+Loaded: Island Sidewalk by Golden Kites (reggae, playful, energy 0.68, tempo 102 BPM)
+Loaded: The Brass Citadel by Northglass Ensemble (classical, triumphant, energy 0.73, tempo 128 BPM)
+Loaded: Quiet Orchard by Fern & Flint (folk, serene, energy 0.31, tempo 74 BPM)
+Loaded: Steel Horizon by Gravel Choir (metal, defiant, energy 0.96, tempo 168 BPM)
+Loaded: Velvet Signals by Marigold Circuit (funk, romantic, energy 0.79, tempo 114 BPM)
+Loaded: Blue Room Lantern by The Copper Notes (blues, mysterious, energy 0.46, tempo 88 BPM)
+Loaded: Paper Planes at Dawn by Harbor Arcade (drum and bass, hopeful, energy 0.88, tempo 174 BPM)
+Loaded 18 songs.
+
+USER PREFERENCES (edge_case_low_energy_prefs)
+============================================================
+Favorite Genre       ambient
+Favorite Mood        serene
+Target Energy        0.0
+============================================================
+
+TOP RECOMMENDATIONS
+============================================================
+
+1. Spacewalk Thoughts - Orbit Bloom
+   Score: 2.72
+   Why this was recommended:
+   - genre match (+2.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.72)
+   - song 0.28, target (0.00)
+
+2. Quiet Orchard - Fern & Flint
+   Score: 1.69
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood match (+1.0)
+   - energy similarity (+0.69)
+   - song 0.31, target (0.00)
+
+3. Library Rain - Paper Lanterns
+   Score: 0.65
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.65)
+   - song 0.35, target (0.00)
+
+4. Coffee Shop Stories - Slow Stereo
+   Score: 0.63
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.63)
+   - song 0.37, target (0.00)
+
+5. Focus Flow - LoRoom
+   Score: 0.60
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.60)
+   - song 0.40, target (0.00)
+
+============================================================
+```
+
+### edge_case_high_energy_prefs
+```
+python3 src/main.py
+Loading songs from data/songs.csv...
+Loaded: Sunrise City by Neon Echo (pop, happy, energy 0.82, tempo 118 BPM)
+Loaded: Midnight Coding by LoRoom (lofi, chill, energy 0.42, tempo 78 BPM)
+Loaded: Storm Runner by Voltline (rock, intense, energy 0.91, tempo 152 BPM)
+Loaded: Library Rain by Paper Lanterns (lofi, chill, energy 0.35, tempo 72 BPM)
+Loaded: Gym Hero by Max Pulse (pop, intense, energy 0.93, tempo 132 BPM)
+Loaded: Spacewalk Thoughts by Orbit Bloom (ambient, chill, energy 0.28, tempo 60 BPM)
+Loaded: Coffee Shop Stories by Slow Stereo (jazz, relaxed, energy 0.37, tempo 90 BPM)
+Loaded: Night Drive Loop by Neon Echo (synthwave, moody, energy 0.75, tempo 110 BPM)
+Loaded: Focus Flow by LoRoom (lofi, focused, energy 0.40, tempo 80 BPM)
+Loaded: Rooftop Lights by Indigo Parade (indie pop, happy, energy 0.76, tempo 124 BPM)
+Loaded: Maple County Lines by June Hollow (country, wistful, energy 0.52, tempo 96 BPM)
+Loaded: Island Sidewalk by Golden Kites (reggae, playful, energy 0.68, tempo 102 BPM)
+Loaded: The Brass Citadel by Northglass Ensemble (classical, triumphant, energy 0.73, tempo 128 BPM)
+Loaded: Quiet Orchard by Fern & Flint (folk, serene, energy 0.31, tempo 74 BPM)
+Loaded: Steel Horizon by Gravel Choir (metal, defiant, energy 0.96, tempo 168 BPM)
+Loaded: Velvet Signals by Marigold Circuit (funk, romantic, energy 0.79, tempo 114 BPM)
+Loaded: Blue Room Lantern by The Copper Notes (blues, mysterious, energy 0.46, tempo 88 BPM)
+Loaded: Paper Planes at Dawn by Harbor Arcade (drum and bass, hopeful, energy 0.88, tempo 174 BPM)
+Loaded 18 songs.
+
+USER PREFERENCES (edge_case_high_energy_prefs)
+============================================================
+Favorite Genre       rock
+Favorite Mood        intense
+Target Energy        1.0
+============================================================
+
+TOP RECOMMENDATIONS
+============================================================
+
+1. Storm Runner - Voltline
+   Score: 3.91
+   Why this was recommended:
+   - genre match (+2.0)
+   - mood match (+1.0)
+   - energy similarity (+0.91)
+   - song 0.91, target (1.00)
+
+2. Gym Hero - Max Pulse
+   Score: 1.93
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood match (+1.0)
+   - energy similarity (+0.93)
+   - song 0.93, target (1.00)
+
+3. Steel Horizon - Gravel Choir
+   Score: 0.96
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.96)
+   - song 0.96, target (1.00)
+
+4. Paper Planes at Dawn - Harbor Arcade
+   Score: 0.88
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.88)
+   - song 0.88, target (1.00)
+
+5. Sunrise City - Neon Echo
+   Score: 0.82
+   Why this was recommended:
+   - genre not preferred (+0.0)
+   - mood not preferred (+0.0)
+   - energy similarity (+0.82)
+   - song 0.82, target (1.00)
+
+============================================================
+```
+
 ```python
+# Conflicting signals: chill lofi paired with an intense mood and high energy.
+adversarial_conflicting_prefs = {
+    "favorite_genre": "lofi",
+    "favorite_mood": "intense",
+    "target_energy": 0.95,
+}
+
+# Edge case: tests the minimum energy value.
+edge_case_low_energy_prefs = {
+    "favorite_genre": "ambient",
+    "favorite_mood": "serene",
+    "target_energy": 0.0,
+}
+
+# Edge case: tests the maximum energy value.
+edge_case_high_energy_prefs = {
+    "favorite_genre": "rock",
+    "favorite_mood": "intense",
+    "target_energy": 1.0,
+}
+
+# Conflicting preferences: favors chill lofi, but also high energy and fast tempo.
+adversarial_conflicting_prefs = {
+    "preferred_genres": {"lofi": 1.0, "rock": 0.9},
+    "preferred_moods": {"chill": 1.0, "intense": 0.9},
+    "energy_preference": 0.95,
+    "tempo_preference_bpm": 170,
+    "valence_preference": 0.1,
+    "danceability_preference": 0.1,
+    "acousticness_preference": 1.0,
+}
+
+# Boundary values: tests numeric preferences at the ends of their 0–1 ranges.
+adversarial_boundary_prefs = {
+    "preferred_genres": {"ambient": 1.0},
+    "preferred_moods": {"serene": 1.0},
+    "energy_preference": 0.0,
+    "tempo_preference_bpm": 0,
+    "valence_preference": 0.0,
+    "danceability_preference": 0.0,
+    "acousticness_preference": 1.0,
+}
+
+# No strong preference: useful for checking how ties or near-ties are ranked.
+edge_case_tie_prefs = {
+    "preferred_genres": {},
+    "preferred_moods": {},
+    "energy_preference": 0.5,
+    "tempo_preference_bpm": 100,
+    "valence_preference": 0.5,
+    "danceability_preference": 0.5,
+    "acousticness_preference": 0.5,
+}
+
+high_energy_pop_prefs = {
+    "favorite_genre": "pop",
+    "favorite_mood": "energetic",
+    "target_energy": 0.9,
+}
+
+chill_lofi_prefs = {
+    "favorite_genre": "lofi",
+    "favorite_mood": "chill",
+    "target_energy": 0.2,
+}
+
+deep_intense_rock_prefs = {
+    "favorite_genre": "rock",
+    "favorite_mood": "intense",
+    "target_energy": 0.9,
+}
+
 taste_profile_1 = {
     "favorite_genre": "lofi",
     "favorite_mood": "chill",
