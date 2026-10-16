@@ -15,14 +15,15 @@ from recommender import load_songs, recommend_songs
 def main() -> None:
     songs = load_songs("data/songs.csv") 
 
-    # Starter example profile
+    # Starter example profile. Various profiles can be tested by changing the values below.
+    # Example profies are avaiable in the README.md file.
     user_prefs = {
-        "favorite_genre": "pop",
-        "favorite_mood": "happy",
-        "target_energy": 0.8,
+        "favorite_genre": "rock",
+        "favorite_mood": "intense",
+        "target_energy": 1.0,
     }
 
-    print("\nUSER PREFERENCES")
+    print("\nUSER PREFERENCES (edge_case_high_energy_prefs)")
     print("=" * 60)
     for name, value in user_prefs.items():
         print(f"{name.replace('_', ' ').title():<20} {value}")
