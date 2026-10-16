@@ -145,6 +145,14 @@ A few sentences about your experience.
 
 Prompts:  
 
-- What you learned about recommender systems  
+- What you learned about recommender systems
+
+I learned that a recommender turns user preferences into scores and uses those scores to rank items. The features and weights matter: changing the balance between genre, mood, and energy can noticeably change the results. I also learned that a system can produce predictable matches while still limiting discovery if it repeatedly recommends only the closest matches. Testing different profiles — including conflicting preferences — helped me see how scoring choices shape recommendations and why variety matters.
+
 - Something unexpected or interesting you discovered  
+
+Something unexpected I discovered was how much a small change to the scoring weights could alter the recommendations. Increasing the importance of energy could push a high-energy song to the top even when its genre or mood was not the closest match. It showed me that recommendations depend not only on a user’s preferences, but also on how the system chooses to balance them.
+
 - How this changed the way you think about music recommendation apps  
+
+Building this recommender changed how I think about music apps. I now realize their suggestions are shaped by the preferences and features they measure, as well as the rules they use to rank songs. While personalized recommendations can make it easier to find music I enjoy, they may also keep showing familiar styles and make it harder to discover something new. I appreciate the importance of balancing personalization with variety.
