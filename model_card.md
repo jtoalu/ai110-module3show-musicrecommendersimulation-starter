@@ -72,6 +72,15 @@ Prompts:
 - Cases where the system overfits to one preference  
 - Ways the scoring might unintentionally favor some users  
 
+The implemented score_song function has a few potential biases and filter-bubble effects:
+
+- Strong genre preference: A genre match can add up to 2 points, compared with 1 point for mood and 1 point for energy similarity. This can make genre dominate the ranking, even when a song is a poor match on other dimensions.
+- Exact-match bias: Without weighted preference dictionaries, only the single favorite genre and mood earn points. Songs from neighboring or similar genres and moods get no credit, which may narrow recommendations.
+- Narrow preference input: If preferred_genres or preferred_moods is supplied, the function uses that dictionary instead of the corresponding favorite value. Any song category not explicitly included in the dictionary gets zero points.
+- Limited feature coverage: The scoring ignores tempo, valence, danceability, acousticness, and likes_acoustic. Users who care about those traits may get recommendations that don’t reflect their preferences.
+- No diversity step: Recommendations are sorted by score and the top k are returned. There is no mechanism to encourage variety, so similar songs or genres can fill the list.
+- Catalog and tie-order effects: Songs with equal scores retain their original catalog order. If the dataset overrepresents certain genres or orders them first, those songs could appear more often in recommendations.
+
 ---
 
 ## 7. Evaluation  
