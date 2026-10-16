@@ -96,6 +96,34 @@ Prompts:
 
 No need for numeric metrics unless you created some.
 
+### Sample Comparisons
+
+1. High‑Energy Pop vs. Chill Lofi
+
+The High‑Energy Pop profile consistently ranked upbeat, fast‑tempo tracks at the top, while the Chill Lofi profile shifted toward slower, mellow songs. This makes sense because the Pop profile heavily rewards high energy and bright moods, whereas the Lofi profile prioritizes low energy and calm moods. Even when both profiles liked similar genres, the energy weight caused their top‑5 lists to diverge significantly.
+
+2. Chill Lofi vs. Deep Intense Rock
+
+Chill Lofi favored soft, atmospheric tracks, while Deep Intense Rock pushed guitar‑heavy, high‑intensity songs to the top. The difference is driven by genre matching: Rock receives strong positive weight for “rock” or “intense” tags, while Lofi penalizes those same attributes. This shows that genre weight is functioning as intended—profiles with opposite genre preferences produce clearly different rankings.
+
+3. High‑Energy Pop vs. Deep Intense Rock
+
+Both profiles surfaced high‑energy songs, but Pop leaned toward electronic or dance‑style tracks, while Rock leaned toward guitar‑driven ones. This overlap happens because both profiles reward high energy, but the genre weight ultimately determines which songs rise to the top. It is a good example of how the scoring system balances numerical features (energy) with categorical ones (genre).
+
+4. Conflicting Profile (e.g., energy: 0.9 + mood: sad) vs. Standard Pop
+
+The conflicting profile produced unusual results — some songs with mismatched moods still ranked highly because the strong energy preference outweighed the mood penalty. In contrast, the Pop profile produced predictable “happy, upbeat” recommendations. This demonstrates how extreme or contradictory preferences can “trick” the scoring logic, exactly as the project instructions describe when suggesting adversarial profiles.
+
+5. After Weight Shift Experiment (genre weight ↓, energy weight ↑)
+
+When energy weight was doubled and genre weight halved, the recommendations changed noticeably: songs with strong energy scores rose in the rankings even if their genre didn’t match the profile. This makes sense because the recommender became more sensitive to numerical features and less dependent on genre alignment. The shift confirms that the scoring logic responds predictably to weight changes, as required in the “Small Data Experiment” step.
+
+6. After Removing Mood Feature
+
+Removing the mood check caused previously “happy‑leaning” profiles to recommend more neutral or mixed‑mood songs. This happened because mood was no longer contributing positive or negative points, so energy and genre dominated the ranking. The change highlights how each feature contributes to the final score and why removing one can noticeably alter the output.
+
+Across all profiles, differences in recommendations were consistent with the scoring logic: genre preferences shaped broad direction, mood refined emotional tone, and energy determined intensity — so changing any of these inputs naturally shifted the top‑ranked songs.
+
 ---
 
 ## 8. Future Work  
